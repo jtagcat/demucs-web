@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{{template "header.html"}}
+<title>Poolita helifail</title>{{/* <title>{{ .Title }}</title> */}}
+<h1>Poolita helifail</h1>
+{{ .headHTML }}
+<form action="/poolita" method="POST">
+  <div>
+    <a href="https://github.com/facebookresearch/demucs#separating-tracks">Mudel</a>: <select name="model">
+      <option value = "htdemucs_ft" selected>htdemucs_ft (fine-tuned)</option>
+      <option value = "htdemucs">htdemucs (Hybrid Transformer Demucs)</option>
+      <option value = "htdemucs_6s">htdemucs_6s (6 sources version)</option>
+      <option value = "hdemucs_mmi">hdemucs_mmi (Hybrid Demucs v3)</option>
+      <option value = "mdx_extra" >mdx_extra (MusDB HQ model, extra training)</option>
+    </select><br>
+    <label for="title">YouTube (või <a href="https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md">muu</a>)
+      link:</label>
+    <input style="width:45em" type="url" name="link" id="link">
+    <button type="submit">Lisa järjekorda</button>
+  </div>
+</form>
+{{- if ne (len .results) 0 -}}
+<div>
+  <h2>Tulemused</h2>
+  <table>
+    {{- range .results -}}
+    <tr>
+      <td>
+        {{- if eq .State 0 -}}<span role="img" aria-label="queued">📥</span>
+        {{- else if eq .State 1 -}}<span role="img" aria-label="processing">⏳</span>
+        {{- else if eq .State 2 -}}<span role="img" aria-label="done">✅</span>
+        {{- else -}}<span role="img" aria-label="failed">❌</span>
+        {{- end -}}
+      </td>
+      <td>
+        {{- if eq .State 0 -}}
+        <form action="/eemalda" method="POST"><button name="id" value="{{ .ID }}">🗙 Eemalda</button></form>
+        {{- else if or (eq .State 1) (eq .State 2) -}}
+        {{.ProcessDurationStr}}
+        {{- else if eq .State 3 -}}
+        <form action="/uuesti" method="POST"><button name="id" value="{{ .ID }}">↻ Proovi uuesti</button></form>
+        {{- end }}
+      </td>
+      <td>{{ .Model }}</td>
+      <td><a class="name" , href="{{ .Link }}">{{.Name}}{{ if not .Name }}{{.Link}}{{end}}</a></td>
+      {{- if eq .State 2 -}}
+      <td>
+        {{ range .Downloads }}
+        <a href="/results/{{ .Path }}">{{ .Name }}</a>
+        {{ end }}
+      </td>
+      {{- else if eq .State 3 -}}
+      <td><details><summary>Vea põhjus</summary>    
+        <p>{{ .ErrReason }}</p>
+    </details></td>
+      {{- end -}}
+    </tr>
+    {{ end }}
+  </table>
+</div>
+{{- end -}}
