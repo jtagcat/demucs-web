@@ -6,8 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-
-	"github.com/jtagcat/util/std"
 )
 
 func BlendAudio(ctx context.Context, inputs []string, output string) error {
@@ -20,12 +18,12 @@ func BlendAudio(ctx context.Context, inputs []string, output string) error {
 		"--", output,
 	}...)
 
-	cmd := exec.Command("ffmpeg", args...)
+	cmd := exec.CommandContext(ctx, "ffmpeg", args...)
 
 	stdmix := new(strings.Builder)
 	cmd.Stdout, cmd.Stderr = stdmix, stdmix
 
-	err := std.RunCmdWithCtx(ctx, cmd)
+	err := cmd.Run()
 	if err != nil {
 		err = fmt.Errorf("%w: %s", err, stdmix.String())
 

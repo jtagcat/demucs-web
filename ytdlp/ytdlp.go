@@ -7,8 +7,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
-
-	"github.com/jtagcat/util/std"
 )
 
 func DownloadMp3(ctx context.Context, link, tempDir, targetDir string) (name string, path string, err error) {
@@ -29,7 +27,7 @@ func DownloadMp3(ctx context.Context, link, tempDir, targetDir string) (name str
 		return "", "", fmt.Errorf("getting absolute path for temporary directory: %w", terr)
 	}
 
-	cmd := exec.Command(
+	cmd := exec.CommandContext(ctx,
 		"yt-dlp", "--quiet",
 		"--paths", "temp:"+tempDir,
 		"--paths", "home:"+targetDir,
@@ -44,7 +42,7 @@ func DownloadMp3(ctx context.Context, link, tempDir, targetDir string) (name str
 	stdout, stderr := new(strings.Builder), new(strings.Builder)
 	cmd.Stdout, cmd.Stderr = stdout, stderr
 
-	if err := std.RunCmdWithCtx(ctx, cmd); err != nil {
+	if err := cmd.Run(); err != nil {
 		return "", "", fmt.Errorf("executing yt-dlp: %w: %s", err, stderr.String())
 	}
 

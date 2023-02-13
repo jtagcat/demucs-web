@@ -8,8 +8,6 @@ import (
 	"path"
 	"strconv"
 	"strings"
-
-	"github.com/jtagcat/util/std"
 )
 
 var (
@@ -68,7 +66,7 @@ func Split(ctx context.Context, model string, overrideJobs int, name, tempDir, t
 		jobs = overrideJobs
 	}
 
-	cmd := exec.Command(
+	cmd := exec.CommandContext(ctx,
 		"demucs",
 		"-n", model,
 		"--jobs", fmt.Sprint(jobs),
@@ -81,7 +79,7 @@ func Split(ctx context.Context, model string, overrideJobs int, name, tempDir, t
 	stdmix := new(strings.Builder)
 	cmd.Stdout, cmd.Stderr = stdmix, stdmix
 
-	if err := std.RunCmdWithCtx(ctx, cmd); err != nil {
+	if err := cmd.Run(); err != nil {
 		return nil, fmt.Errorf("executing demucs: %w: %s", err, stdmix.String())
 	}
 
