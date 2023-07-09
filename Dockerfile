@@ -23,5 +23,6 @@ RUN pip install yt-dlp demucs
 
 COPY --from=builder /wd/demucs-web ./
 CMD ["./demucs-web"]
+EXPOSE 8080
 
 COPY templates templates
