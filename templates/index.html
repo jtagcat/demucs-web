@@ -43,6 +43,9 @@
       <td><a class="name" , href="{{ .Link }}">{{.Name}}{{ if not .Name }}{{.Link}}{{end}}</a></td>
       {{- if eq .State 2 -}}
       <td>
+        {{- if ne (len .Downloads) 0 }}
+        <a href="/laulupeo/{{ .ID }}">lp</a>
+        {{- end -}}
         {{ range .Downloads }}
         <a href="/results/{{ .Path }}">{{ .Name }}</a>
         {{ end }}

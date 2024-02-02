@@ -1,0 +1,132 @@
+@font-face {
+	font-family: 'Joanna Sans Nova';
+	src: local('Joanna Sans Nova Italic'), local('JoannaSansNova-Italic'),
+		url('../fonts/JoannaSansNova-Italic.woff2') format('woff2'),
+		url('../fonts/JoannaSansNova-Italic.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Joanna Sans Nova';
+	src: local('Joanna Sans Nova'), local('JoannaSansNova-Regular'),
+		url('../fonts/JoannaSansNova-Regular.woff2') format('woff2'),
+		url('../fonts/JoannaSansNova-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Joanna Sans Nova';
+	src: local('Joanna Sans Nova Bold Italic'), local('JoannaSansNova-BoldItalic'),
+		url('../fonts/JoannaSansNova-BoldItalic.woff2') format('woff2'),
+		url('../fonts/JoannaSansNova-BoldItalic.woff') format('woff');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Joanna Sans Nova';
+	src: local('Joanna Sans Nova Bold'), local('JoannaSansNova-Bold'),
+		url('../fonts/JoannaSansNova-Bold.woff2') format('woff2'),
+		url('../fonts/JoannaSansNova-Bold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'laulupidu_c03regular';
+	src: url('../fonts/laulupidu_c03.woff2') format('woff2'),
+		 url('../fonts/laulupidu_c03.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+
+}
+
+body {
+	font-family: 'Joanna Sans Nova';
+	font-size: 0.9375rem;
+	font-weight: 400;
+	line-height: 1.1875rem;
+}
+
+h4 {
+	font-family: 'laulupidu_c03regular';
+	text-transform: uppercase;
+}
+
+.faders input[type="range"] {
+	writing-mode: bt-lr;
+	-webkit-appearance: slider-vertical;
+}
+
+.faderWrapper {
+	height: 100px;
+}
+
+.faderWrapper .trackFader {
+	width: 15px;
+}
+
+
+.btn-primary,
+.btn-secondary {
+	background: rgb(255, 82, 125);
+	border: 0;
+	border-radius: 15px;
+}
+
+.btn-secondary {
+	background: rgb(12,29,93);
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:focus-visible,
+.btn-primary:disabled,
+.btn-primary:focus-within,
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus,
+.btn-secondary:focus-visible,
+.btn-secondary:disabled,
+.btn-secondary:focus-within
+{
+	background: rgb(199,37,136);
+	border: 0;
+	border-radius: 15px;
+	outline-color: transparent !important;
+	box-shadow: none;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.bookmarksWrapper .bookmark {
+	line-height: 22px;
+	border-bottom: 1px solid rgba(199,37,136,0.1);
+}
+
+.bookmarksWrapper .bookmark .fa-play {
+	color: rgba(199,37,136, 0.5);
+	font-size: 0.75em;
+	margin-bottom: 1px;
+}
+
+-webkit-slider-thumb:active {
+	background-color: red !important;
+}
+
+-webkit-slider-thumb,
+.form-range:focus::-webkit-slider-thumb,
+.form-range:focus::-moz-range-thumb,
+.form-range:focus::-ms-thumb {
+	box-shadow: red !important;
+}

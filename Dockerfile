@@ -24,4 +24,5 @@ COPY --from=builder /wd/demucs-web ./
 CMD ["./demucs-web"]
 EXPOSE 8080
 
+COPY laulupeoassets laulupeoassets
 COPY templates templates

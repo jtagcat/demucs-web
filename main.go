@@ -218,6 +218,40 @@ func main() {
 
 	router.Static("/results", downloadDir)
 
+	router.Static("/laulupeo/assets", "laulupeoassets")
+	router.GET("/laulupeo/:id", func(c *gin.Context) {
+		id := c.Param("id")
+
+		var job Job
+		if err := db.First(&job, SQLId, id).Error; err != nil {
+			cErr(c, http.StatusInternalServerError, err)
+			return
+		}
+
+		var rawDownloads []Download
+		if err := db.Where(SQLDownloadJob+" = ?", job.ID).Find(&rawDownloads).Error; err != nil {
+			cErr(c, http.StatusInternalServerError, err)
+			return
+		}
+
+		var downloads []Download
+		for _, d := range rawDownloads {
+			switch d.Name {
+				case "original", "fono": continue
+			}
+
+			downloads = append(downloads, d)
+		}
+
+		c.HTML(http.StatusOK, "laulupeo.html", gin.H{
+			"job": JobWithDL{
+				Job:                job,
+				ProcessDurationStr: fmt.Sprintf("%s", job.ProcessDuration.Round(time.Second)),
+				Downloads:          downloads,
+			},
+		})
+	})
+
 	log.Println("listening on :8080")
 	router.Run()
 }
