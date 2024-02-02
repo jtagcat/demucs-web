@@ -17,15 +17,15 @@
 
 	<link rel="stylesheet" href="/laulupeo/assets/css/style.css">
 
-	<title>pool.5s.ee | {{.Name}}{{ if not .Name }}{{.Link}}{{end}}</title>
+	<title>pool.5s.ee | {{.job.Name}}{{ if not .job.Name }}{{.job.Link}}{{end}}</title>
 </head>
 <body>
 	<a href=/><button class="btn btn-secondary"> 🏠 </button></a> XIII noorte laulupeo häälepartiide rakendus
 	<div class="container pt-4">
 		<div class="row">
 			<div class="col-12">
-				<h4>{{.Name}}{{ if not .Name }}{{.Link}}{{end}}</h4>
-				<h6>{{.Link}}</h6>
+				<h4>{{.job.Name}}{{ if not .job.Name }}{{.job.Link}}{{end}}</h4>
+				<h6>{{.job.Link}}</h6>
 			</div>
 			<!-- <div class="col-12">
 				<button class="btn btn-primary" id="play" disabled>Play</button>
