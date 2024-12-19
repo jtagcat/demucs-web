@@ -1,12 +1,12 @@
 module github.com/jtagcat/demucs-web
 
-go 1.21.0
+go 1.23
 
 toolchain go1.23.4
 
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/jtagcat/util v0.0.0-20240715094238-4fd7053e38e3
+	github.com/jtagcat/util v0.0.0-20241213035248-427207f9be6c
 	gorm.io/driver/sqlite v1.5.7
 	gorm.io/gorm v1.25.12
 	k8s.io/apimachinery v0.32.0
@@ -22,7 +22,7 @@ require (
 )
 
 require (
-	github.com/bytedance/sonic v1.12.5 // indirect
+	github.com/bytedance/sonic v1.12.6 // indirect
 	github.com/bytedance/sonic/loader v0.2.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20230717121745-296ad89f973d // indirect
 	github.com/chenzhuoyu/iasm v0.9.1 // indirect
@@ -45,10 +45,10 @@ require (
 	github.com/ugorji/go/codec v1.2.12 // indirect
 	golang.org/x/arch v0.12.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/net v0.32.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
-	google.golang.org/protobuf v1.35.2 // indirect
+	google.golang.org/protobuf v1.36.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
